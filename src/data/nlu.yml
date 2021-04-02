@@ -42,19 +42,6 @@ nlu:
 
 - intent: request_comic
   examples: |
-    - Ce l'hai il [fumetto](comic)
-    - Hai [fumetto](comic)?
-    - C'è [fumetto](comic)?
-    - C'è  [fumetto](comic) in negozio?
-    - [fumetto](comic) è arrivato?
-    - è arrivato [fumetto](comic)?
-    - ciao, hai [fumetto](comic)?
-    - ciao hai [fumetto](comic)?
-    - buonasera hai [fumetto](comic)?
-    - buona sera hai [fumetto](comic)?
-
-- intent: request_comic
-  examples: |
     - [Promised neverland](comic)
     - cerco [Lupin](comic)
     - Ce l'hai [Dragon Ball](comic)
@@ -76,11 +63,11 @@ nlu:
     - è arrivato [Amazing Spider Man](comic)?
     - arrivato [Incredibili X-men](comic)?
     - è disponibile [One Piece](comic)?
-    - cerco il numero [5](number)
-    - il numero [30](number)
-    - [10](number)
-    - numero [6](number)
-    - il [25](number)
+    - cerco il numero [5](num_comic)
+    - il numero [30](num_comic)
+    - [10](num_comic)
+    - numero [6](num_comic)
+    - il [25](num_comic)
     - il [20 maggio](date)
     - [20-05-2021](date)
     - il [20 aprile](date)
