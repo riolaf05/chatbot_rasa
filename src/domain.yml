@@ -1,0 +1,88 @@
+version: "2.0"
+intents:
+  - chitchat
+  - greet
+  - affirm
+  - deny
+  - stop
+  - thankyou
+  - bot_challenge
+  - out_of_scope
+  - request_comic
+
+entities:
+  - comic
+  - num_comic
+  - date
+
+#actions:
+#- validate_comic_form
+#  - comic_search 
+
+slots:
+  comic:
+    type: unfeaturized
+    #type: text
+    #influence_conversation: false
+    #auto_fill: false
+  num_comic:
+    type: unfeaturized
+    #type: float
+    #influence_conversation: false
+    #auto_fill: false
+  date:
+    type: unfeaturized
+
+forms:
+  - comic_form
+  # comic_form:
+  #   comic:
+  #   - type: from_entity
+  #     entity: comic
+  #     not_intent: chitchat
+  #   num_comic:
+  #   - type: from_entity
+  #     entity: number
+  #     intent: request_comic
+
+responses:
+  utter_ask_comic:
+    - text: "Quale fumetto?"
+  utter_ask_num_comic:
+    - text: "Che numero?"
+  utter_ask_date:
+    - text: "Qual'è la data di uscita?"
+  utter_ask_feedback:
+    - text: "Per favore dammi un feedback sulla tua esperienza con questo chatbot"
+  utter_submit:
+  - text: "Perfetto!"
+  utter_slots_values:
+  - text: "Quindi, stai cercando:\n
+            - Albo: {comic}\n
+            - Numero: {num_comic}\n
+            - Data di uscita: {date}"
+  utter_noworries:
+    - text: "prego :)"
+  utter_chitchat:
+    - text: "chitchat"
+  utter_ask_continue:
+    - text: "Vuoi continuare?"
+  utter_wrong_comic:
+    - text: "Mi dispiace l'albo indicato non è disponibile :( "
+  utter_wrong_num_comic:
+    - text: "Il numero indicato non è disponibile"
+  utter_default:
+    - text: "Mi dispiace non ho capito, puoi ripetere?"
+  utter_greet:
+    - text: "Ciao, sono il tuo assistente nella ricerca degli albi! Come posso aiutarti?"
+  utter_iamabot:
+    - text: "Ciao sono un bot!"
+  utter_restart:
+    - text: "Riavvio in corso"
+  utter_goodbye:
+    - text: "Ciao!"
+
+session_config:
+  session_expiration_time: 60  # value in minutes
+  carry_over_slots_to_new_session: true
+

@@ -1,0 +1,163 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - ciao
+    - hello
+    - saluti
+    - hey
+    - ciao bot
+    - Buona sera
+    - Buonasera
+    - Buongiorno
+    - Buon giorno
+    - Buon pomeriggio
+    - ohi
+
+- intent: affirm
+  examples: |
+    - si
+    - yes
+    - ok
+    - va bene
+    - giusto
+    - si, sto cercando [Spiderman](comic)
+
+- intent: deny
+  examples: |
+    - no
+    - nah
+    - no no
+    - cancella
+    - non proprio
+
+- intent: thankyou
+  examples: |
+    - ok grazie
+    - grazie
+    - grazie mille
+    - grazie tante
+    - ti ringrazio
+
+- intent: request_comic
+  examples: |
+    - Ce l'hai il [fumetto](comic)
+    - Hai [fumetto](comic)?
+    - C'è [fumetto](comic)?
+    - C'è  [fumetto](comic) in negozio?
+    - [fumetto](comic) è arrivato?
+    - è arrivato [fumetto](comic)?
+    - ciao, hai [fumetto](comic)?
+    - ciao hai [fumetto](comic)?
+    - buonasera hai [fumetto](comic)?
+    - buona sera hai [fumetto](comic)?
+
+- intent: request_comic
+  examples: |
+    - [Promised neverland](comic)
+    - cerco [Lupin](comic)
+    - Ce l'hai [Dragon Ball](comic)
+    - Hai [Berserk](comic)?
+    - C'è  [Attacco di Giganti](comic) in negozio?
+    - [One Punch Man](comic) è arrivato?
+    - è arrivato [Iron Man](comic)?
+    - ciao, hai [Avengers](comic)?
+    - ciao hai [Venom](comic)?
+    - buonasera hai [Superman](comic)?
+    - buona sera hai [Topolino](comic)?
+    - Cerco [spider man](comic)
+    - [Spider Man](comic)?
+    - C'è [X-men](comic)?
+    - Mi serve [X-men](comic)
+    - E' arrivato [Wolverine](comic)?
+    - è arrivato [Batman](comic)?
+    - Posso comprare [Spiderman](comic)?
+    - è arrivato [Amazing Spider Man](comic)?
+    - arrivato [Incredibili X-men](comic)?
+    - è disponibile [One Piece](comic)?
+    - cerco il numero [5](number)
+    - il numero [30](number)
+    - [10](number)
+    - numero [6](number)
+    - il [25](number)
+    - il [20 maggio](date)
+    - [20-05-2021](date)
+    - il [20 aprile](date)
+    
+
+- intent: stop
+  examples: |
+    - ok allora non puoi aiutarmi
+    - peccato, non mi stai aiutando
+    - così non mi aiuti
+    - sembra tu non possa aiutarmi allora
+    - non è quello che mi serviva
+    - ok, ma non mi aiuta
+    - questo non mi porterà a niente
+    - questa conversazione non è di aiuto
+    - penso tu non possa aiutarmi
+    - hm non penso sia ciò che mi serviva
+    - stop
+    - stop torna indietro
+    - a cosa serve?
+    - e tu credi di aiutare un bot così? pff
+    - cos'è?
+    - nient'altro?
+
+- intent: out_of_scope #things a user could say that indicate they don’t want to continue the form
+  examples: |
+    - non è ciò che volevo
+    - annulla
+    - annulla stop
+    - annulla, stop
+    - stop
+    - non mi aiuta
+    - no no
+    - no 
+    - non va bene
+    - cancella
+    - cancella cancella
+    - sbagliato
+    - ho cambiato idea 
+    - basta
+    - basta così
+    - torna indietro
+    - chiedimelo di nuovo
+
+- intent: bot_challenge
+  examples: |
+    - sei un bot?
+    - sei un umano?
+    - sto parlando con un bot?
+    - sto parlando con un umano?
+
+- intent: chitchat
+  examples: |
+    - ti posso chiedere chi ti ha programmato?
+    - 
+    - per favore dimmi chi ti ha programmato?
+    - dimmi chi ti ha programmato?
+    - sei anche tu un supereroe?
+    - ciao, come stai?
+    - sta bene?
+    - stai bene?
+    - ti senti bene?
+    - come va?
+    - come sta andando?
+    - come'è la situazione?
+    - come stai
+    - come va
+    - come va stamattina
+    - come ti senti
+    - come stai oggi
+    - come stai oggi?
+    - com'è il tempo oggi?
+    - oggi pione?
+    - c'è maltempo?
+    - sta ancora piovendo?
+    - qual'è il tuo fumetto preferito?
+    - conosci un supereroe?
+
+
+    
