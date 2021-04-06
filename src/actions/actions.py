@@ -1,10 +1,14 @@
-from typing import Any, Text, Dict, List, Union
-
+from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.forms import FormAction
-
+from rasa_sdk.events import SlotSet
+from rasa_sdk.events import FollowupAction
+from rasa_sdk.events import BotUttered
 import mysql.connector
+import logging
+logger = logging.getLogger(__name__)
+
+
 
 mydb = mysql.connector.connect(
   host="192.168.1.12",
@@ -14,121 +18,42 @@ mydb = mysql.connector.connect(
   database="chatbot"
 )
 
-class ComicsForm(FormAction):
-# your form functions go here
-    def name(self):
-        return "comic_form"
-    
-    @staticmethod
-    def required_slots(tracker): 
-        '''
-        it configures which slots are required by the form. 
-        In addition to specifying the required slots, we’re also introducing a bit of conditional logic.
-        '''
+class ActionProductSearch(Action):
+    def name(self) -> Text:
+        return "action_product_search"
 
-        return ["comic", "num_comic", "date"]
-    
-    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
-        """A dictionary to map required slots to
-            - an extracted entity
-            - intent: value pairs
-            - a whole message
-            or a list of them, where a first match will be picked
-            
-            This function is optional when creating a form. 
-            You need to map slots only if you don’t want to automatically fill 
-            slots with entities of the same name, and want to enforce some other logic."""
-
-        return {
-
-            "comic": [
-                self.from_entity(entity="comic"),
-                self.from_intent(intent="deny", value="None"),
-            ],
-            "num_comic": [
-                self.from_entity(entity="num_comic"),
-                self.from_text(intent="deny"),
-            ],
-            "date": [
-                self.from_entity(entity="date"),
-                self.from_text(intent="deny"),
-            ],
-        }
-
-    def submit(
+    def run(
         self,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any],
-        ) -> List[Dict]:
-        '''
-        This tells the assistant what to do when all of the slots in the form have been filled.
-        '''
+    ) -> List[Dict[Text, Any]]:
 
-        #check comic availability from here!!
+        # connect to DB
+        mycursor = mydb.cursor()
 
-        dispatcher.utter_message("Perfetto, cercherò il tuo albo!")
-        return []
-    
+        # get slots and save as tuple
+        product = [(tracker.get_slot("comic")), int((tracker.get_slot("num_comic")))]
 
-# class ValidateComicsForm(FormValidationAction):
-#     """Example of a form validation action."""
+        # place cursor on correct row based on search criteria
+        mycursor.execute("SELECT * FROM inventory WHERE item IN (%s) AND qty=%s", product)
+        
+        # retrieve sqlite row
+        myresult = mycursor.fetchall()
+        data_row=[]
+        for x in myresult:
+            data_row.append(x[0])
 
-#     def name(self) -> Text:
-#         return "validate_comic_form"
+        # in any function
+        logger.debug(data_row)
 
-#     @staticmethod
-#     def comic_db() -> List[Text]:
-#         """Database of supported cuisines."""
-
-#         mycursor = mydb.cursor()
-#         mycursor.execute("SELECT * FROM inventory")
-#         myresult = mycursor.fetchall()
-#         list=[]
-#         for x in myresult:
-#             list.append(x[0])
-#         return list
-
-#     @staticmethod
-#     def is_int(string: Text) -> bool:
-#         """Check if a string is an integer."""
-
-#         try:
-#             int(string)
-#             return True
-#         except ValueError:
-#             return False
-
-#     def validate_comic(
-#         self,
-#         value: Text,
-#         dispatcher: CollectingDispatcher,
-#         tracker: Tracker,
-#         domain: Dict[Text, Any],
-#     ) -> Dict[Text, Any]:
-#         """Validate cuisine value."""
-
-#         if value.lower() in self.comic_db():
-#             # validation succeeded, set the value of the "cuisine" slot to value
-#             return {"comic": value}
-#         else:
-#             dispatcher.utter_message(response="utter_wrong_comic")
-#             # validation failed, set this slot to None, meaning the
-#             # user will be asked for the slot again
-#             return {"comic": None}
-
-#     def validate_num_comic(
-#         self,
-#         value: Text,
-#         dispatcher: CollectingDispatcher,
-#         tracker: Tracker,
-#         domain: Dict[Text, Any],
-#     ) -> Dict[Text, Any]:
-#         """Validate num_people value."""
-
-#         if self.is_int(value) and int(value) > 0:
-#             return {"num_comic": value}
-#         else:
-#             dispatcher.utter_message(response="utter_wrong_num_comic")
-#             # validation failed, set slot to None
-#             return {"num_comic": None}
+        if data_row:
+            # provide in stock message
+            dispatcher.utter_message(template="utter_in_stock")
+            slots_to_reset = ["comic", "num_comic"]
+            return [SlotSet(slot, None) for slot in slots_to_reset]
+        else:
+            # provide out of stock
+            dispatcher.utter_message(template="utter_no_stock")
+            slots_to_reset = ["comic", "num_comic"]
+            return [SlotSet(slot, None) for slot in slots_to_reset]

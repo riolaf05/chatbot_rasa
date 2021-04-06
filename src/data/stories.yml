@@ -1,53 +1,19 @@
 version: "2.0"
 stories:
-  - story: happy path
+  - story: happy path for product search
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: request_comic
-      - action: comic_form
-      - active_loop: comic_form
-      - active_loop: null
+      - intent: product_stock
+      - action: product_stock_form
+      - active_loop: product_stock_form
     
-  - story: no survey
+  #add un-happy path
+
+  - story: User stops product_stock
     steps:
-    - intent: greet
-    - action: utter_greet
+    - active_loop: product_stock_form
     - intent: deny
     - action: utter_goodbye
-
-  - story: survey stop
-    steps:
-    - intent: greet
-    - action: utter_greet
-    - intent: request_comic
-    - action: comic_form
-    - active_loop: comic_form
-    - intent: out_of_scope
-    - action: utter_ask_continue
-    - intent: deny
+    - action: action_deactivate_loop
     - active_loop: null
-
-  # - story: stop form + continue
-  #   steps:
-  #     - intent: request_comic
-  #     - action: comic_form
-  #     - active_loop: comic_form
-  #     - intent: stop
-  #     - action: utter_ask_continue
-  #     - intent: affirm
-  #     - action: comic_form
-  #     - active_loop: null
-  #     - action: utter_submit
-  #     - action: utter_slots_values
-
-  # - story: stop form + stop
-  #   steps:
-  #     - intent: request_comic
-  #     - action: comic_form
-  #     - active_loop: comic_form
-  #     - intent: stop
-  #     - action: utter_ask_continue
-  #     - intent: deny
-  #     - action: action_deactivate_loop
-  #     - active_loop: null

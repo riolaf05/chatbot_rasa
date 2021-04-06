@@ -10,6 +10,7 @@ rasa shell
 
 ### References 
 
+* [Example](https://github.com/RasaHQ/retail-demo)
 * [ITA guide](https://www.qi-lab.it/2019/10/12/sviluppo-un-chatbot-framework-rasa/)
 * [Rasa X Deploy](https://medium.com/swlh/build-your-first-a-i-chatbot-in-30-minutes-step-by-step-guide-to-rasa-x-installation-in-windows-10-e94174703472)
 * [Spacy Italian language](https://spacy.io/models/it#it_core_news_md)

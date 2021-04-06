@@ -1,0 +1,43 @@
+version: '3.1'
+
+services:
+
+  rasa_actions:
+    image: rasa/rasa:2.4.3-full
+    container_name: rasa_actions
+    restart: unless-stopped
+    command: rasa 
+    ports:
+      - 5055:5055
+    volumes:
+      - src:/src
+      working_dir: /src
+    networks:
+      - rasa-network
+      command:
+        - rasa run action
+  
+  rasa_api:
+    image: rasa/rasa:2.4.3-full
+    container_name: rasa_api
+    restart: unless-stopped
+    ports:
+        - 5055:5055
+    volumes:
+        - src:/src
+        working_dir: /src
+    networks:
+        - rasa-network
+    
+  duckling:
+    image: rasa/duckling
+    container_name: rasa_duckling
+    restart: unless-stopped
+    ports:
+        - 8000:8000
+    networks:
+        - rasa-network
+
+networks:
+  rasa-network:
+    driver: bridge

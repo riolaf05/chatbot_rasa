@@ -22,7 +22,7 @@ nlu:
     - ok
     - va bene
     - giusto
-    - si, sto cercando [Spiderman](comic)
+    - si, sto cercando un fumetto
 
 - intent: deny
   examples: |
@@ -40,10 +40,23 @@ nlu:
     - grazie tante
     - ti ringrazio
 
-- intent: request_comic
+- intent: product_stock
   examples: |
+    - cerco un fumetto
+    - cerco [spider man](comic) numero [5](num_comic)
+    - sto cercando [deadpool](comic) numero [35](num_comic)
+    - sto cercando [deadpool](comic)
+    - [spider man](comic)
+    - [la regina d'egitto](comic)
+    - [venom](comic)
+    - [dragon ball](comic)
+    - [naruto](comic)
+    - [boruto](comic)
+    - [boruto](comic) [75](num_comic)
     - [Promised neverland](comic)
     - cerco [Lupin](comic)
+    - cerco [captain america](comic) [10](num_comic)
+    - cerco [captain america](comic) numero [10](num_comic)
     - Ce l'hai [Dragon Ball](comic)
     - Hai [Berserk](comic)?
     - C'è  [Attacco di Giganti](comic) in negozio?

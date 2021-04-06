@@ -1,88 +1,81 @@
-version: "2.0"
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
-  - chitchat
-  - greet
-  - affirm
-  - deny
-  - stop
-  - thankyou
-  - bot_challenge
-  - out_of_scope
-  - request_comic
-
+- greet
+- stop
+- product_stock
+- chitchat
+- affirm
+- deny
+- thankyou
+- bot_challenge
+- out_of_scope
 entities:
-  - comic
-  - num_comic
-  - date
-
-#actions:
-#- validate_comic_form
-#  - comic_search 
-
+- comic
+- date
+- num_comic
 slots:
   comic:
     type: unfeaturized
-    #type: text
-    #influence_conversation: false
-    #auto_fill: false
+    influence_conversation: false
   num_comic:
     type: unfeaturized
-    #type: float
-    #influence_conversation: false
-    #auto_fill: false
-  date:
-    type: unfeaturized
-
-forms:
-  - comic_form
-  # comic_form:
-  #   comic:
-  #   - type: from_entity
-  #     entity: comic
-  #     not_intent: chitchat
-  #   num_comic:
-  #   - type: from_entity
-  #     entity: number
-  #     intent: request_comic
-
+    influence_conversation: false
 responses:
   utter_ask_comic:
-    - text: "Quale fumetto?"
+  - text: Quale fumetto?
   utter_ask_num_comic:
-    - text: "Che numero?"
+  - text: Che numero?
   utter_ask_date:
-    - text: "Qual'è la data di uscita?"
+  - text: Qual'è la data di uscita?
   utter_ask_feedback:
-    - text: "Per favore dammi un feedback sulla tua esperienza con questo chatbot"
+  - text: Per favore dammi un feedback sulla tua esperienza con questo chatbot
   utter_submit:
-  - text: "Perfetto!"
+  - text: Perfetto!
   utter_slots_values:
-  - text: "Quindi, stai cercando:\n
-            - Albo: {comic}\n
-            - Numero: {num_comic}\n
-            - Data di uscita: {date}"
+  - text: |-
+      Quindi, stai cercando:
+       - Albo: {comic}
+       - Numero: {num_comic}
+       - Data di uscita: {date}
   utter_noworries:
-    - text: "prego :)"
+  - text: prego :)
   utter_chitchat:
-    - text: "chitchat"
+  - text: chitchat
   utter_ask_continue:
-    - text: "Vuoi continuare?"
+  - text: Vuoi continuare?
   utter_wrong_comic:
-    - text: "Mi dispiace l'albo indicato non è disponibile :( "
+  - text: "Mi dispiace l'albo indicato non è disponibile :( "
   utter_wrong_num_comic:
-    - text: "Il numero indicato non è disponibile"
+  - text: Il numero indicato non è disponibile
   utter_default:
-    - text: "Mi dispiace non ho capito, puoi ripetere?"
+  - text: Mi dispiace non ho capito, puoi ripetere?
   utter_greet:
-    - text: "Ciao, sono il tuo assistente nella ricerca degli albi! Come posso aiutarti?"
+  - text: |
+      Ciao, sono il tuo assistente nella ricerca degli albi! Come posso aiutarti? Dimmi:
+       Cerco un fumetto, oppure,
+       Cerco una data di uscita, oppure,
+       Cerco informazioni sul negozio.
   utter_iamabot:
-    - text: "Ciao sono un bot!"
+  - text: Ciao sono un bot!
   utter_restart:
-    - text: "Riavvio in corso"
+  - text: Riavvio in corso
   utter_goodbye:
-    - text: "Ciao!"
-
-session_config:
-  session_expiration_time: 60  # value in minutes
-  carry_over_slots_to_new_session: true
-
+  - text: Ciao!
+  utter_in_stock:
+  - text: '{comic} {num_comic} è disponibile in negozio!'
+  utter_no_stock:
+  - text: '{comic} {num_comic} non è disponibile in negozio, vuoi prenotarlo?'
+actions:
+- action_product_search
+- utter_greet
+forms:
+  product_stock_form:
+    comic:
+    - entity: comic
+      type: from_text
+    num_comic:
+    - entity: num_comic
+      type: from_text
