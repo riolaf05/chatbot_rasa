@@ -1,3 +1,0 @@
-rasa==2.4.3
-rasa-sdk==2.4.1
-mysql-connector-python
