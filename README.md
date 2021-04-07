@@ -18,8 +18,8 @@ Kubernetes cluster with Helm3
 ```console
 kubectl create namespace rasa
 helm repo add rasa-x https://rasahq.github.io/rasa-x-helm
-helm --namespace rasa install --values values.yml --version 1.8.0 rasax rasa-x/rasa-x
-```console
+helm --namespace rasa install --version 1.8.0 rasax rasa-x/rasa-x
+```
 
 3. Add git repository from the **Rasa X** console, add the provided public key as a Deploy key in te repository.
 
