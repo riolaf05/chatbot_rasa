@@ -4,19 +4,19 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from rasa_sdk.events import FollowupAction
 from rasa_sdk.events import BotUttered
-import mysql.connector
+#import mysql.connector
 import logging
 logger = logging.getLogger(__name__)
 
 
 
-mydb = mysql.connector.connect(
-  host="192.168.1.12",
-  user="root",
-  password="onslario89",
-  port="31851",
-  database="chatbot"
-)
+# mydb = mysql.connector.connect(
+#   host="192.168.1.12",
+#   user="root",
+#   password="onslario89",
+#   port="31851",
+#   database="chatbot"
+# )
 
 class ActionProductSearch(Action):
     def name(self) -> Text:
@@ -30,19 +30,20 @@ class ActionProductSearch(Action):
     ) -> List[Dict[Text, Any]]:
 
         # connect to DB
-        mycursor = mydb.cursor()
+        #mycursor = mydb.cursor()
 
         # get slots and save as tuple
         product = [(tracker.get_slot("comic")), int((tracker.get_slot("num_comic")))]
 
         # place cursor on correct row based on search criteria
-        mycursor.execute("SELECT * FROM inventory WHERE item IN (%s) AND qty=%s", product)
+        #mycursor.execute("SELECT * FROM inventory WHERE item IN (%s) AND qty=%s", product)
         
         # retrieve sqlite row
-        myresult = mycursor.fetchall()
-        data_row=[]
-        for x in myresult:
-            data_row.append(x[0])
+        # myresult = mycursor.fetchall()
+        # data_row=[]
+        data_row = True #Remove after demo
+        # for x in myresult:
+        #     data_row.append(x[0])
 
         # in any function
         logger.debug(data_row)

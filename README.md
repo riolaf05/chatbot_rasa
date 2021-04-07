@@ -29,6 +29,8 @@ helm --namespace rasa install --values values.yml --version 1.8.0 rasax rasa-x/r
 
 4. Add git repository from the **Rasa X** console, add the provided public key as a Deploy key in te repository.
 
+Note: **Rasa X** default password is `welcome123`
+
 ### References 
 
 * [Example](https://github.com/RasaHQ/retail-demo)

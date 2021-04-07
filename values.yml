@@ -3,9 +3,9 @@ debugMode: "true"
 # app (custom action server) specific settings
 app:
     # name of the custom action server image to use
-    name: ""
+    name: "rio05docker/rasa"
     # tag refers to the custom action server image tag
-    tag: ""
+    tag: "v0.0.1"
 
 # images: Settings for the images
 images:
