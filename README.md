@@ -1,5 +1,5 @@
 
-### Istructions
+### Train the model locally
 
 ```console
 rasa train --debug
@@ -7,6 +7,21 @@ rasa run actions&
 rasa shell
 ```
 
+### Deploy on Rasa X
+
+1. **Prerequisites**
+
+Kubernetes cluster with Helm3 
+
+2. **Install Rasa X**
+
+```console
+kubectl create namespace rasa
+helm repo add rasa-x https://rasahq.github.io/rasa-x-helm
+helm --namespace rasa install --values values.yml --version 1.8.0 rasax rasa-x/rasa-x
+```console
+
+3. Add git repository from the **Rasa X** console, add the provided public key as a Deploy key in te repository.
 
 ### References 
 
