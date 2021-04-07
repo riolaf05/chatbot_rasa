@@ -1,0 +1,14 @@
+debugMode: "true"
+
+# app (custom action server) specific settings
+app:
+    # name of the custom action server image to use
+    name: ""
+    # tag refers to the custom action server image tag
+    tag: ""
+
+# images: Settings for the images
+images:
+  # imagePullSecrets which are required to pull images for private registries
+  imagePullSecrets:
+  - name: regcred

@@ -13,15 +13,21 @@ rasa shell
 
 Kubernetes cluster with Helm3 
 
-2. **Install Rasa X**
+2. Add secret to pull from Docker Registry:
+
+```console
+kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v2/ --docker-username=<username> --docker-password=<password> 
+```
+
+3. **Install Rasa X**
 
 ```console
 kubectl create namespace rasa
 helm repo add rasa-x https://rasahq.github.io/rasa-x-helm
-helm --namespace rasa install --version 1.8.0 rasax rasa-x/rasa-x
+helm --namespace rasa install --values values.yml --version 1.8.0 rasax rasa-x/rasa-x
 ```
 
-3. Add git repository from the **Rasa X** console, add the provided public key as a Deploy key in te repository.
+4. Add git repository from the **Rasa X** console, add the provided public key as a Deploy key in te repository.
 
 ### References 
 
