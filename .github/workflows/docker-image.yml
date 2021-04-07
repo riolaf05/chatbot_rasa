@@ -22,7 +22,7 @@ jobs:
             context: ./
             file: ./Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_IMAGE }}/${{ secrets.DOCKER_REPO }}:$(date +%s)
+            tags: ${{ secrets.DOCKER_IMAGE }}/${{ secrets.DOCKER_REPO }}:latest
 
         - name: Image digest
           run: echo ${{ steps.docker_build.outputs.digest }}
