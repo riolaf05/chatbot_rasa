@@ -8,7 +8,13 @@ stories:
       - action: product_stock_form
       - active_loop: product_stock_form
     
-  #add un-happy path
+  - story: unhappy path for product search
+    steps:
+      - action: product_stock_form
+      - active_loop: product_stock_form
+      - intent: out_of_scope
+      - action: utter_goodbye
+      - active_loop: null
 
   - story: User stops product_stock
     steps:
@@ -17,3 +23,11 @@ stories:
     - action: utter_goodbye
     - action: action_deactivate_loop
     - active_loop: null
+
+  - story: happy path for shop info
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: shop_info
+      - action: action_shop_info
+      - active_loop: null

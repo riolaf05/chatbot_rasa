@@ -7,6 +7,7 @@ from rasa_sdk.events import BotUttered
 #import mysql.connector
 import logging
 logger = logging.getLogger(__name__)
+from datetime import datetime
 
 
 
@@ -58,3 +59,27 @@ class ActionProductSearch(Action):
             dispatcher.utter_message(template="utter_no_stock")
             slots_to_reset = ["comic", "num_comic"]
             return [SlotSet(slot, None) for slot in slots_to_reset]
+
+class ActionShopInfo(Action):
+    def name(self) -> Text:
+        return "action_shop_info"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+    
+        
+        #checking closing time
+        now = datetime.now()
+        close_time = "19:30:00" #TODO: get this from DB
+        close_time = datetime.strptime(close_time, "%H:%M:%S")
+
+        if now > close_time:
+            dispatcher.utter_message("Il negozio è chiuso, ci trovi domani mattina a partire dalle 8!")
+        else:
+            dispatcher.utter_message("Il negozio è aperto ti aspettiamo!")
+
+        

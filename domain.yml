@@ -12,6 +12,7 @@ intents:
 - thankyou
 - bot_challenge
 - out_of_scope
+- shop_info
 entities:
 - comic
 - date
@@ -57,7 +58,7 @@ responses:
       Ciao, sono il tuo assistente nella ricerca degli albi! Come posso aiutarti? Dimmi:
        Cerco un fumetto, oppure,
        Cerco una data di uscita, oppure,
-       Cerco informazioni sul negozio.
+       Cerco informazioni sul negozio (es. orari di apertura).
   utter_iamabot:
   - text: Ciao sono un bot!
   utter_restart:
@@ -70,6 +71,7 @@ responses:
   - text: '{comic} {num_comic} non è disponibile in negozio, vuoi prenotarlo?'
 actions:
 - action_product_search
+- action_shop_info
 - utter_greet
 forms:
   product_stock_form:

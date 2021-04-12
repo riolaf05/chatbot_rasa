@@ -7,6 +7,12 @@ rasa run actions&
 rasa shell
 ```
 
+For local development run also:
+
+```console
+docker run -it -d --restart=unless-stopped --name duckling -p 8000:8000 rasa/duckling
+```
+
 ### Deploy on Rasa X
 
 1. **Prerequisites**
@@ -18,6 +24,7 @@ Kubernetes cluster with Helm3
 ```console
 kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v2/ --docker-username=<username> --docker-password=<password> 
 ```
+
 
 3. **Install Rasa X**
 

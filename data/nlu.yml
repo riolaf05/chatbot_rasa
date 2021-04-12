@@ -132,10 +132,50 @@ nlu:
     - sto parlando con un bot?
     - sto parlando con un umano?
 
+- intent: shop_info
+  examples: |
+    - cerco informazioni sul negozio
+    - è aperto?
+    - è aperto al momento?
+    - volevo sapere se è aperto
+    - volevo sapere se al momento è aperto
+    - posso passare?
+    - al momento è aperto?
+    - al momento ci sei?
+    - è aperto adesso?
+    - adesso è aperto?
+    - ora è aperto?
+    - è aperto ora?
+    - ci sei ora?
+    - ci sei?
+    - volevo passare adesso
+    - volevo sapere se ora è aperto
+    - il negozio è aperto?
+    - è aperto il negozio?
+
+- intent: shop_info
+  examples: |
+    - è aperto?
+    - è aperto al momento?
+    - volevo sapere se è aperto
+    - volevo sapere se al momento è aperto
+    - posso passare?
+    - al momento è aperto?
+    - al momento ci sei?
+    - è aperto adesso?
+    - adesso è aperto?
+    - ora è aperto?
+    - è aperto ora?
+    - ci sei ora?
+    - ci sei?
+    - volevo passare adesso
+    - volevo sapere se ora è aperto
+    - il negozio è aperto?
+    - è aperto il negozio?
+
 - intent: chitchat
   examples: |
     - ti posso chiedere chi ti ha programmato?
-    - 
     - per favore dimmi chi ti ha programmato?
     - dimmi chi ti ha programmato?
     - sei anche tu un supereroe?
